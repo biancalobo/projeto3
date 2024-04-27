@@ -20,11 +20,12 @@ ERROS listar(Contato contatos[], int *pos){
         encontradas++;
     }
 
-    if(encontradas == 0)
+  if(encontradas == 0)
       printf("Nenhum contato encontrado com a informação '%s'.\n", informacao);
-      return CONTATO_INEXISTENTE;
+  return CONTATO_INEXISTENTE;
 }
-    return OK;
+
+  return OK;
 
   vazio = 0
 
