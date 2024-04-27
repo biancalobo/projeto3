@@ -15,5 +15,3 @@ scanf("%s", contatos[*pos].email);
 clearBuffer();
   printf("Digite o telefone do contato: ");
   scanf("%d", &contatos[*pos].telefone);
-
-
