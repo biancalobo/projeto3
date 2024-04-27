@@ -2,17 +2,28 @@
 #include "tarefas.c"
 #include "tarefas.h"
 
-ERROS adicionar(Contato contatos[], int *pos);
-if(*pos >= TOTAL)
-      return lista_cheia;
 
+ERROS carregar(Contato contatos[], int *pos){
+    FILE *f = fopen("tarefas.bin", "rb");
+    if(f == NULL)
+        return ABRIR;
 
-ERROS listar(Contato contatos[], int pos);
+    int qtd = fread(contatos, TOTAL, sizeof(Contato), f);
+    if(qtd == 0)
+        return LER;
 
+    qtd = fread(pos, 1, sizeof(int), f);
+    if(qtd == 0)
+        return LER;
 
-ERROS deletar(Contato contatos[], int *pos);
-  if(*pos == 0)
-    return contato_inexistente
+    if(fclose(f))
+        return FECHAR;
 
-  int pos_deletar;
-  printf("Digite o contato que deseja deletar: ");
+    return OK;
+
+}
+
+void clearBuffer(){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
