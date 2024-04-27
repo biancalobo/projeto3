@@ -4,15 +4,25 @@
 
 ERROS adicionar(Contato contatos[], int *pos);
 if(*pos >= TOTAL)
-      return lista_cheia;
+  return maximo_contatos;
+
+printf("Digite o nome do contato: ");
+scanf("%s", contatos[*pos].nome);
+
+printf("Digite o email do contato: ");
+scanf("%s", contatos[*pos].email);
+
+clearBuffer();
+  printf("Digite o telefone do contato: ");
+  scanf("%d", &contatos[*pos].telefone);
 
 
-ERROS listar(Contato contatos[], int pos);
 
 
-ERROS deletar(Contato contatos[], int *pos);
-  if(*pos == 0)
-    return contato_inexistente
 
-  int pos_deletar;
-  printf("Digite o contato que deseja deletar: ");
+
+
+void clearBuffer(){
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
