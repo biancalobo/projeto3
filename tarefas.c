@@ -32,20 +32,8 @@ if(*pos >= TOTAL)
 printf("Digite o nome do contato: ");
 scanf("%s", contatos[*pos].nome);
 
-printf("Digite o email do contato: ");
-scanf("%s", contatos[*pos].email);
-
-clearBuffer();
-  printf("Digite o telefone do contato: ");
-  scanf("%d", &contatos[*pos].telefone);
 
 
 
 
 
-
-
-void clearBuffer(){
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
