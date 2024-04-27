@@ -31,7 +31,7 @@ if (opcao > 3 || opcao < 0) {
 
     } while (opcao != 0);
 
-    ERROS ERRO_SALVAR = fs[3](contatos, &pos);
+    ERROS ERRO_SALVAR = fs[4](contatos, &pos);
     if (ERRO_SALVAR != OK) {
         printf("Erro ao salvar os contatos: %d\n", ERRO_SALVAR);
     }

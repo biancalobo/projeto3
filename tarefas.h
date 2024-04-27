@@ -3,11 +3,12 @@
 #define TOTAL 255
 #define NOME 255
 #define TELEFONE 255
+#define INFORMACAO
 
 typedef struct {
-    char nome[NOME];
-    int telefone;
-
+  char nome[NOME];
+  int telefone;  
+  char informacao[INFORMACAO];
 } Contato;
 
 typedef enum {
