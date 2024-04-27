@@ -10,6 +10,7 @@ if(*pos >= TOTAL)
 ERROS listar(Contato contatos[], int pos);
 
 
+
 ERROS deletar(Contato contatos[], int *pos);
   if(*pos == 0)
     return contato_inexistente
