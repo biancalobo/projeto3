@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "con.c"
-#include "con.h"
+#include "tarefas.h"
+#include "tarefas.h"
+
 
 ERROS adicionar(Contato contatos[], int *pos);
 if(*pos >= TOTAL)
