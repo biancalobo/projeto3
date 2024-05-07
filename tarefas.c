@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "tarefas.c"
 #include "tarefas.h"
+#include "tarefas.h"
+
 
 
 ERROS carregar(Contato contatos[], int *pos){
@@ -59,7 +60,7 @@ ERROS listar(Contato contatos[], int *pos){
   if listar == 0
     printf("%d", listar)
 }
-=======
+
 
 ERROS deletar(Contato contatos[], int *pos){
     if(*pos == 0)
@@ -91,6 +92,11 @@ printf("Digite o nome do contato: ");
 scanf("%s", contatos[*pos].nome);
 
 
+
+clearBuffer();
+  printf("Digite o telefone do contato: ");
+  scanf("%d", &contatos[*pos].telefone);
+=======
 
 
 ERROS salvar(Contato contatos[], int *pos){
