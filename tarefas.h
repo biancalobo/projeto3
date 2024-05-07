@@ -1,9 +1,7 @@
-#define TAREFAS.H
-
 #define TOTAL 255
 #define NOME 255
 #define TELEFONE 255
-#define INFORMACAO
+#define INFORMACAO 255
 
 typedef struct {
   char nome[NOME];

@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include "tarefas.h"
 
-int main(){
-  funcao fs[] = {adicionar, listar, deletar, salvar, carregar};
-
-  Contato contatos[TOTAL];
-  int pos = 0; 
-  ERROS erro = fs[4](contatos, &pos); 
+int main() {
+    funcao fs[] = {adicionar, listar, deletar, salvar, carregar};
+    Contato contatos[TOTAL];
+    int pos = 0; 
+    ERROS erro = fs[0](contatos, &pos);
   
   int opcao;
   do{
@@ -28,13 +27,10 @@ if (opcao > 3 || opcao < 0) {
         } else {
             printf("Saindo...\n");
         }
-
     } while (opcao != 0);
-
-    ERROS ERRO_SALVAR = fs[4](contatos, &pos);
+    ERROS ERRO_SALVAR = fs[3](contatos, &pos); // Call 'salvar' function before exiting
     if (ERRO_SALVAR != OK) {
         printf("Erro ao salvar os contatos: %d\n", ERRO_SALVAR);
     }
-
     return 0;
 }
