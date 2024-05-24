@@ -5,7 +5,12 @@ int main() {
     funcao fs[] = {adicionar, listar, deletar, salvar, carregar};
     Contato contatos[TOTAL];
     int pos = 0; 
-    ERROS erro = fs[0](contatos, &pos);
+    ERROS erro;
+
+    erro = fs[4](contatos, &pos);
+    if (erro != OK) {
+        printf("Erro ao carregar os contatos: %d\n", erro);
+    }
   
   int opcao;
   do{
@@ -28,9 +33,9 @@ if (opcao > 3 || opcao < 0) {
             printf("Saindo...\n");
         }
     } while (opcao != 0);
-    ERROS ERRO_SALVAR = fs[3](contatos, &pos); // Call 'salvar' function before exiting
-    if (ERRO_SALVAR != OK) {
-        printf("Erro ao salvar os contatos: %d\n", ERRO_SALVAR);
+    erro = fs[3](contatos, &pos);  // Chama a função 'salvar' antes de sair
+    if (erro != OK) {
+        printf("Erro ao salvar os contatos: %d\n", erro);
     }
+
     return 0;
-}

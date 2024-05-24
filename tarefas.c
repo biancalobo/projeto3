@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "tarefas.h"
+#include <string.h>
 #include "tarefas.h"
 
 ERROS adicionar(Contato contatos[], int *pos){
@@ -11,31 +11,30 @@ ERROS adicionar(Contato contatos[], int *pos){
 
     clearBuffer();
     printf("Digite o telefone do contato: ");
-    scanf(" %d", &contatos[*pos].telefone);
+    scanf("%d", &contatos[*pos].telefone);
 
-    (*pos)++;
-
-    return OK;
+    clearBuffer();
+    printf("Digite a informacao do contato: ");
+    scanf(" %[^\n]", contatos[*pos].informacao);
 }
 
 ERROS carregar(Contato contatos[], int *pos){
     FILE *f = fopen("tarefas.bin", "rb");
-    if(f == NULL)
-        return ABRIR;
+    if (f == NULL)
+        return ERRO_ABRIR;
 
-    int qtd = fread(contatos, TOTAL, sizeof(Contato), f);
-    if(qtd == 0)
-        return LER;
+    int qtd = fread(contatos, sizeof(Contato), TOTAL, f);
+    if (qtd == 0 && ferror(f))
+        return ERRO_LER;
 
-    qtd = fread(pos, 1, sizeof(int), f);
-    if(qtd == 0)
-        return LER;
+    qtd = fread(pos, sizeof(int), 1, f);
+    if (qtd == 0 && ferror(f))
+        return ERRO_LER;
 
-    if(fclose(f))
-        return FECHAR;
+    if (fclose(f))
+        return ERRO_FECHAR;
 
     return OK;
-
 }
 
 void clearBuffer(){
@@ -70,6 +69,7 @@ ERROS deletar(Contato contatos[], int *pos){
     printf("Entre com a posicao da tarefa a ser deletada: ");
     scanf(" %d", &pos_deletar);
     pos_deletar--;
+    
     if(pos_deletar >= *pos || pos_deletar < 0)
         return CONTATO_INEXISTENTE;
 
@@ -99,6 +99,9 @@ ERROS salvar(Contato contatos[], int *pos){
     if(qtd != 1){
         fclose(f);
         return ERRO_ESCREVER;
+
+    if (fclose(f))
+        return ERRO_FECHAR;
     }
     fclose(f);
     return OK;

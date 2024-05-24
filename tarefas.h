@@ -1,3 +1,6 @@
+#ifndef TAREFAS_H
+#define TAREFAS_H
+
 #define TOTAL 255
 #define NOME 255
 #define TELEFONE 255
@@ -6,11 +9,11 @@
 typedef struct {
   char nome[NOME];
   int telefone;  
-  char informacao[INFORMACAO];
+  char informacao;
 } Contato;
 
 typedef enum {
-OK, ERRO_ADICIONAR, ERRO_LISTAR, ERRO_DELETAR, ERRO_SALVAR, ERRO_CARREGAR, CONTATO_INEXISTENTE
+OK, ERRO_ADICIONAR, ERRO_LISTAR, ERRO_DELETAR, ERRO_SALVAR, ERRO_CARREGAR, CONTATO_INEXISTENTE, ERRO_ABRIR, ERRO_FECHAR
 } ERROS;
 
 
@@ -22,3 +25,6 @@ ERROS deletar(Contato[], int*);
 ERROS salvar(Contato[], int);
 ERROS carregar(Contato[], int*);
 
+void clearBuffer();
+
+#endif
