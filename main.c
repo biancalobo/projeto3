@@ -7,7 +7,6 @@
           int pos = 0;
           ERROS erro;
 
-          // Carregar os contatos do arquivo ao iniciar o programa
           erro = fs[4](contatos, &pos);
           if (erro != OK) {
               printf("Erro ao carregar os contatos: %d\n", erro);
@@ -40,7 +39,7 @@
               }
           } while (opcao != 0);
 
-          erro = fs[3](contatos, &pos);  // Chama a função 'salvar' antes de sair
+          erro = fs[3](contatos, &pos);
           if (erro != OK) {
               printf("Erro ao salvar os contatos: %d\n", erro);
           }
