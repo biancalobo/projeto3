@@ -121,3 +121,40 @@ ERROS salvar(Contato contatos[], int *pos) {
 
     return OK;
 }
+
+//função para alterar o contato
+
+ERROS alterar(Contato contatos[], int *pos) {
+    if (*pos == 0) {
+        printf("Nenhum contato encontrado\n");
+        return OK;
+    }
+
+    printf("Digite o nome do contato que deseja alterar:\n");
+    for (int i = 0; i < *pos; i++) {
+        printf("%d - %s\n", i + 1, contatos[i].nome);
+    }
+
+    int escolha;
+    printf("Digite o numero do contato que deseja alterar: ");
+    scanf("%d", &escolha);
+    escolha--;
+
+    if (escolha < 0 || escolha >= *pos) {
+        printf("Contato invalido.\n");
+        return OK;
+    }
+
+    printf("Digite o novo nome do contato: ");
+    scanf("%s", contatos[escolha].nome);
+
+    printf("Digite o novo telefone do contato: ");
+    scanf("%d", &contatos[escolha].telefone);
+
+    printf("Digite o novo e-mail do contato: ");
+    scanf("%s", contatos[escolha].email);
+
+    printf("Contato alterado com sucesso.\n");
+
+    return OK;
+}
