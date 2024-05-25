@@ -28,7 +28,7 @@ int main() {
             opcao = -1;
         }
 
-        if (opcao > 5 || opcao < 0) {
+        if (opcao > 4 || opcao < 0) {
             printf("Opcao invalida\n");
         } else if (opcao > 0) {
             erro = fs[opcao - 1](contatos, &pos);
