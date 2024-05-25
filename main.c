@@ -18,6 +18,19 @@ if (erro != OK) {
     printf("Erro ao carregar os contatos de trabalho: %d\n", erro);
 }
 
+ listas
+=======
+funcao_alterar
+    erro = fs[1](contatos, &pos);
+    if (erro != OK) {
+        printf("Erro ao carregar os contatos: %d\n", erro);
+    }
+=======
+          erro = fs[4](contatos, &pos);
+          if (erro != OK) {
+              printf("Erro ao carregar os contatos: %d\n", erro);
+          }
+main
 
     int opcao;
     do {
@@ -47,10 +60,17 @@ if (erro != OK) {
         }
     } while (opcao != 0);
 
+funcao_alterar
     erro = fs[4](contatos, &pos); 
     if (erro != OK) {
         printf("Erro ao salvar os contatos: %d\n", erro);
     }
+=======
+          erro = fs[3](contatos, &pos);
+          if (erro != OK) {
+              printf("Erro ao salvar os contatos: %d\n", erro);
+          }
+ main
 
     return 0;
 }
