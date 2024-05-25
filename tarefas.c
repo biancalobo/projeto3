@@ -22,7 +22,7 @@ ERROS adicionar(Contato contatos[], int *pos) {
     }
 
     clearBuffer();
-    printf("Digite a informacao do contato: ");
+    printf("Digite o email do contato: ");
     result = scanf(" %[^\n]", contatos[*pos].informacao);
     if (result != 1) {
         clearBuffer();
@@ -33,29 +33,6 @@ ERROS adicionar(Contato contatos[], int *pos) {
     return OK;
 }
 
-ERROS carregar(Contato contatos[], int *pos) {
-    FILE *f = fopen("tarefas.bin", "rb");
-    if (f == NULL)
-        return ERRO_ABRIR;
-
-    int qtd = fread(contatos, sizeof(Contato), TOTAL, f);
-    if (qtd == 0 && ferror(f))
-        return ERRO_LER;
-
-    qtd = fread(pos, sizeof(int), 1, f);
-    if (qtd == 0 && ferror(f))
-        return ERRO_LER;
-
-    if (fclose(f))
-        return ERRO_FECHAR;
-
-    return OK;
-}
-
-void clearBuffer() {
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF);
-}
 
 ERROS listar(Contato contatos[], int *pos) {
     if (*pos > TOTAL)
@@ -99,6 +76,60 @@ ERROS deletar(Contato contatos[], int *pos) {
     return OK;
 }
 
+//função para alterar os dados de um contato
+
+ERROS alterar(Contato contatos[], int *pos) {
+        if (*pos == 0) {
+            printf("Nenhum contato cadastrado.\n");
+            return OK;
+        }
+
+        printf("Digite o nome do contato que deseja alterar: \n");
+        for (int i = 0; i < *pos; i++) {
+            printf("%d - %s\n", i + 1, contatos[i].nome);
+        }
+
+        int escolha;
+        printf("Digite o número do contato que deseja alterar: ");
+        if (scanf("%d", &escolha) != 1) {
+            clearBuffer();
+            printf("Entrada inválida.\n");
+            return OK;
+        }
+        escolha--;
+
+        if (escolha < 0 || escolha >= *pos) {
+            printf("Contato inválido.\n");
+            return OK;
+        }
+
+        printf("Digite o novo nome: ");
+        if (scanf("%s", contatos[escolha].nome) != 1) {
+            clearBuffer();
+            printf("Entrada invalida.\n");
+            return OK;
+        }
+
+        printf("Digite o novo telefone: ");
+        if (scanf("%d", &contatos[escolha].telefone) != 1) {
+            clearBuffer();
+            printf("Entrada invalida.\n");
+            return OK;
+        }
+
+        printf("Digite o novo email: ");
+        if (scanf("%s", contatos[escolha].informacao) != 1) {
+            clearBuffer();
+            printf("Entrada invalida.\n");
+            return OK;
+        }
+
+        printf("Contato alterado com sucesso.\n");
+
+        return OK;
+
+}
+
 ERROS salvar(Contato contatos[], int *pos) {
     FILE *f = fopen("tarefas.bin", "wb");
     if (f == NULL)
@@ -119,5 +150,67 @@ ERROS salvar(Contato contatos[], int *pos) {
     if (fclose(f))
         return ERRO_FECHAR;
 
+    return OK;
+}
+
+
+ERROS carregar(Contato contatos[], int *pos) {
+    FILE *f = fopen("tarefas.bin", "rb");
+    if (f == NULL)
+        return ERRO_ABRIR;
+
+    int qtd = fread(contatos, sizeof(Contato), TOTAL, f);
+    if (qtd == 0 && ferror(f))
+        return ERRO_LER;
+
+    qtd = fread(pos, sizeof(int), 1, f);
+    if (qtd == 0 && ferror(f))
+        return ERRO_LER;
+
+    if (fclose(f))
+        return ERRO_FECHAR;
+
+    return OK;
+}
+
+void clearBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+ERROS adicionar(Contato contatos[], int *pos) {
+    if (*pos >= TOTAL)
+        return MAXIMO_CONTATOS;
+
+    printf("Digite o nome do contato: ");
+    int result = scanf(" %s", contatos[*pos].nome);
+    if (result != 1) {
+        clearBuffer();
+        return ERRO_ADICIONAR;
+    }
+
+    printf("Digite o número de telefone do contato: ");
+    result = scanf("%d", &contatos[*pos].telefone);
+    if (result != 1) {
+        clearBuffer();
+        return ERRO_ADICIONAR;
+    }
+
+    for (int i = 0; i < *pos; i++) {
+        if (contatos[i].telefone == contatos[*pos].telefone) {
+            printf("Este telefone já está cadastrado\n");
+            return ERRO_ADICIONAR;
+        }
+    }
+
+    clearBuffer();
+    printf("Digite o email do contato: ");
+    result = scanf(" %[^\n]", contatos[*pos].informacao);
+    if (result != 1) {
+        clearBuffer();
+        return ERRO_ADICIONAR;
+    }
+
+    (*pos)++;
     return OK;
 }
