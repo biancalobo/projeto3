@@ -25,6 +25,8 @@ ERROS salvar(Contato[], int*);
 ERROS carregar(Contato[], int*);
 ERROS alterar(Contato[], int*);
 
+
+
 void clearBuffer();
 
 #endif
