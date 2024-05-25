@@ -5,6 +5,8 @@
 #define NOME 255
 #define TELEFONE 255
 #define INFORMACAO 255
+#define CONTATOS_PESSOAIS 255
+#define OUTROS 255
 
 typedef struct {
     char nome[NOME];

@@ -1,12 +1,25 @@
 #include <stdio.h>
 #include "tarefas.h"
 
-int main() {
-    funcao fs[4] = {adicionar, listar, deletar, alterar, salvar};
-    Contato contatos[TOTAL];
-    int pos = 0;
-    ERROS erro;
+funcao fs[5] = {adicionar, listar, deletar, alterar, salvar};
+Contato contatos_pessoais[CONTATOS_PESSOAIS];
+Contato outros[OUTROS];
+int pos_pessoais = 0;
+int pos_outros = 0;
+ERROS erro;
 
+erro = fs[3](contatos_pessoais, &pos_pessoais);
+if (erro != OK) {
+    printf("Erro ao carregar os contatos pessoais: %d\n", erro);
+}
+
+erro = fs[3](outros, &pos_trabalho);
+if (erro != OK) {
+    printf("Erro ao carregar os contatos de trabalho: %d\n", erro);
+}
+
+ listas
+=======
 funcao_alterar
     erro = fs[1](contatos, &pos);
     if (erro != OK) {
@@ -35,7 +48,7 @@ main
             opcao = -1;
         }
 
-        if (opcao > 5 || opcao < 0) {
+        if (opcao > 4 || opcao < 0) {
             printf("Opcao invalida\n");
         } else if (opcao > 0) {
             erro = fs[opcao - 1](contatos, &pos);

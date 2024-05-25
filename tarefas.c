@@ -21,6 +21,13 @@ ERROS adicionar(Contato contatos[], int *pos) {
         return ERRO_ADICIONAR;
     }
 
+    for (int i = 0; i < *pos; i++) {
+        if (contatos[i].telefone == contatos[*pos].telefone) {
+            printf("Telefone já existe na lista.\n");
+            return ERRO_ADICIONAR;
+        }
+    }
+
     clearBuffer();
     printf("Digite o email do contato: ");
     result = scanf(" %[^\n]", contatos[*pos].informacao);
